@@ -1,0 +1,15 @@
+.counter {
+  text-align: center;
+  font-size: 2.4em;
+  color: #ff5722;
+  text-shadow: 2px 2px 2px black;
+  cursor: pointer;
+}
+
+.counter > button {
+  padding: 0 50px;
+  margin: 5px;
+  font-size: 0.7em;
+  cursor: pointer;
+  user-select: none;
+}
