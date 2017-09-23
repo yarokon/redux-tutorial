@@ -3,41 +3,32 @@ import { connect } from 'react-redux';
 
 import { addTodo } from '../../TodoApp/actions';
 
-const onInput = (dispatch, input) => {
-  const text = input.value.trim();
-
-  if (text) {
-    dispatch(addTodo(text));
-  }
-
-  input.value = '';
-};
-
-
 let AddTodo = ({ dispatch }) => {
   let input;
 
   return (
-    <div>
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+
+        if (!input.value.trim()) {
+          return;
+        }
+
+        dispatch(addTodo(input.value));
+        input.value = '';
+      }}
+    >
       <input
         autoFocus
         ref={node => {
           input = node;
         }}
-        onKeyPress={event => {
-          if(event.key === 'Enter'){
-            onInput(dispatch, input);
-          }
-        }}
       />
-      <button
-        onClick={() => {
-          onInput(dispatch, input);
-        }}
-      >
+      <button type="submit">
         Add Todo
       </button>
-    </div>
+    </form>
   );
 };
 AddTodo = connect()(AddTodo);

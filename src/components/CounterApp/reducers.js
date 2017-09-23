@@ -1,9 +1,9 @@
 import {
   INCREMENT,
-  DECREMENT
+  DECREMENT,
 } from './actions';
 
-export const counter = (state = 0, action) => {
+const counter = (state = 0, action) => {
   switch (action.type) {
     case INCREMENT:
       return state + 1;
@@ -12,4 +12,6 @@ export const counter = (state = 0, action) => {
     default:
       return state;
   }
-}
+};
+
+export default counter;

@@ -5,7 +5,7 @@ import { toggleTodo } from '../actions';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED} from '../filterList';
 
 export const getVisibleTodos = (todos, filter) => {
-  switch(filter) {
+  switch (filter) {
     case SHOW_ALL:
       return todos;
     case SHOW_ACTIVE:
@@ -19,7 +19,7 @@ export const getVisibleTodos = (todos, filter) => {
 
 const mapStateToProps = ({
   todos,
-  visibilityFilter
+  visibilityFilter,
 }) => {
   return {
     todos: getVisibleTodos(todos, visibilityFilter)
@@ -36,7 +36,7 @@ const mapDispatchToProps = dispatch => {
 
 const VisibleTodoList = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(TodoList);
 
 export default VisibleTodoList;

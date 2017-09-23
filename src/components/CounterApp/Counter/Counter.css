@@ -6,8 +6,12 @@
   cursor: pointer;
 }
 
+.counter > .number {
+  margin: 0.5em;
+}
+
 .counter > button {
-  padding: 0 50px;
+  width: 120px;
   margin: 5px;
   font-size: 0.7em;
   cursor: pointer;

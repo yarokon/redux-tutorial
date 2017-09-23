@@ -5,7 +5,7 @@ import Counter from './Counter/Counter';
 
 const mapStateToProps = state => {
   return {
-    value: state.counter
+    value: state.counter,
   };
 };
 
@@ -16,13 +16,13 @@ const mapDispatchToProps = dispatch => {
     },
     onIncrement: () => {
       dispatch(increment());
-    }
+    },
   }
 };
 
 const CounterApp = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Counter);
 
 export default CounterApp;

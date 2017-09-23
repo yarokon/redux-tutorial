@@ -1,12 +1,11 @@
 import { combineReducers, createStore } from 'redux';
 
-import { counter } from './components/CounterApp/store';
-import { todos, visibilityFilter } from './components/TodoApp/store';
+import counter from './components/CounterApp/reducers';
+import * as todos from './components/TodoApp/reducers';
 
 const reduxTutorial = combineReducers({
   counter,
-  todos,
-  visibilityFilter
+  ...todos,
 });
 
 const store = createStore(

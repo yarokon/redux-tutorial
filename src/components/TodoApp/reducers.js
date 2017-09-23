@@ -1,7 +1,7 @@
 import {
   ADD_TODO,
   TOGGLE_TODO,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
 } from './actions';
 
 import { SHOW_ALL } from './filterList';
@@ -12,7 +12,7 @@ const todo = (state = {}, action) => {
       return {
         id: action.id,
         text: action.text,
-        completed: false
+        completed: false,
       };
     case TOGGLE_TODO:
       if (state.id !== action.id) {
@@ -21,7 +21,7 @@ const todo = (state = {}, action) => {
 
       return {
         ...state,
-        completed: !state.completed
+        completed: !state.completed,
       };
     default:
       return state;

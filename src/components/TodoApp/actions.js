@@ -9,21 +9,21 @@ export const addTodo = (() => {
     return {
       type: ADD_TODO,
       id: nextTodoId++,
-      text
+      text,
     };
-  }
+  };
 })();
 
 export const toggleTodo = id => {
   return {
     type: TOGGLE_TODO,
-    id
+    id,
   };
-}
+};
 
 export const setVisibilityFilter = filter => {
   return {
     type: SET_VISIBILITY_FILTER,
-    filter
+    filter,
   };
-}
+};

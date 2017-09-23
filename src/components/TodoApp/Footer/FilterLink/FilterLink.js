@@ -5,7 +5,7 @@ import { setVisibilityFilter } from '../../actions';
 
 const mapStateToProps = (
   state,
-  ownProps
+  ownProps,
 ) => {
   return {
     active: ownProps.filter === state.visibilityFilter
@@ -14,7 +14,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = (
   dispatch,
-  ownProps
+  ownProps,
 ) => {
   return {
     onClick: () => {
