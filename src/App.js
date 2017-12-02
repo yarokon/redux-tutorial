@@ -1,17 +1,15 @@
 import React from 'react';
 
-import WelcomeApp from './components/WelcomeApp/WelcomeApp';
-import CounterApp from './components/CounterApp/CounterApp';
-import TodoApp from './components/TodoApp/TodoApp';
+import WelcomeApp from './apps/WelcomeApp/WelcomeApp';
+import TodoApp from './apps/TodoApp/TodoApp';
+import CounterApp from './apps/CounterApp/CounterApp';
 
-const App = () => {
-  return (
-    <div>
-      <WelcomeApp />
-      <CounterApp />
-      <TodoApp />
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <WelcomeApp />
+    <TodoApp />
+    <CounterApp />
+  </div>
+);
 
 export default App;

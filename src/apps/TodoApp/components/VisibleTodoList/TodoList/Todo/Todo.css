@@ -1,0 +1,17 @@
+.todo-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.todo-list > .todo {
+  padding: 5px 10px;
+  margin: 8px 0;
+  background: white;
+  cursor: pointer;
+}
+
+.todo-list > .todo.completed {
+  text-decoration: line-through;
+  color: #979797;
+}

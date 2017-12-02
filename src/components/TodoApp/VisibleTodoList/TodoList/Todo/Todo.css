@@ -1,8 +1,0 @@
-li.todo {
-  cursor: pointer;
-  user-select: none;
-}
-
-li.todo.completed {
-  text-decoration: line-through;
-}
