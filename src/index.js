@@ -7,6 +7,7 @@ import './index.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
+export const ROOT_PATH = '/redux-tutorial';
 const store = configureStore();
 
 render(

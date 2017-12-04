@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addTodo } from '../../../TodoApp/actions';
+import './AddTodo.css';
 
 let AddTodo = ({ dispatch }) => {
   let input;
 
   return (
     <form
+      className="add-todo"
       onSubmit={e => {
         e.preventDefault();
 
@@ -21,6 +23,7 @@ let AddTodo = ({ dispatch }) => {
     >
       <input
         autoFocus
+        maxLength="32"
         ref={node => {
           input = node;
         }}
