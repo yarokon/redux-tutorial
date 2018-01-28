@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FilterLink from './FilterLink/FilterLink';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../actions';
+import { ALL, ACTIVE, COMPLETED } from '../../actions/filterNames';
 
 const Filter = () => {
   return (
@@ -9,19 +9,19 @@ const Filter = () => {
       Show:
       {' '}
       <FilterLink
-        filter={SHOW_ALL}
+        filter={ALL}
       >
         All
       </FilterLink>
       {' | '}
       <FilterLink
-        filter={SHOW_ACTIVE}
+        filter={ACTIVE}
       >
         Active
       </FilterLink>
       {' | '}
       <FilterLink
-        filter={SHOW_COMPLETED}
+        filter={COMPLETED}
       >
         Completed
       </FilterLink>

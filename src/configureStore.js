@@ -1,42 +1,24 @@
-import { combineReducers, createStore } from 'redux';
-import throttle from 'lodash/throttle';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 
 import todos from './apps/TodoApp/reducers/todos';
 import counter from './apps/CounterApp/reducers';
-import { loadState, saveState } from './localStorage';
-
-const addLoggingToDispatch = ({ getState, dispatch }) => (
-  action => {
-    console.group(action.type);
-    console.log('%c prev state', 'color: gray', getState());
-    console.log('%c action', 'color: blue', action);
-    const returnValue = dispatch(action);
-    console.log('%c next state', 'color: green', getState());
-    console.groupEnd(action.type);
-
-    return returnValue;
-  }
-);
 
 const configureStore = () => {
-  const reduxTutorial = combineReducers({
+  const rootReducer = combineReducers({
     todos,
     counter
   });
 
-  const persistedState = loadState();
+  const middlewares = [thunk, createLogger()];
 
-  const store = createStore(
-    reduxTutorial,
-    persistedState,
+  return createStore(
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(...middlewares)
   );
-
-  store.dispatch = addLoggingToDispatch(store);
-  store.subscribe(throttle(() => saveState(store.getState()), 1e3));
-
-  return store;
 };
 
 export default configureStore;

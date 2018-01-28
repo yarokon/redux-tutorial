@@ -1,59 +1,32 @@
 import { combineReducers } from 'redux';
-import omit from 'lodash/omit';
 
-import todo from './todo';
-import {
-  ADD_TODO, TOGGLE_TODO, DELETE_TODO,
-  SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED
-} from '../actions';
+import { ALL, ACTIVE, COMPLETED } from '../actions/filterNames';
+import byId, * as fromById from './byId';
+import createList, * as fromList from './createList';
 
-const byId = (state = {}, action) => {
-  switch (action.type) {
-    case ADD_TODO:
-    case TOGGLE_TODO:
-      return {
-        ...state,
-        [action.id]: todo(state[action.id], action)
-      };
-    case DELETE_TODO:
-      return omit(state, action.id);
-    default:
-      return state;
-  }
-};
 
-const allIds = (state = [], action) => {
-  switch (action.type) {
-    case ADD_TODO:
-      return [...state, action.id];
-    case DELETE_TODO:
-      return state.filter(id => id !== action.id);
-    default:
-      return state;
-  }
-};
+const listByFilter = combineReducers({
+  [ALL]: createList(ALL),
+  [ACTIVE]: createList(ACTIVE),
+  [COMPLETED]: createList(COMPLETED),
+});
 
 const todos = combineReducers({
   byId,
-  allIds
+  listByFilter
 });
 
 export default todos;
 
-const getAllTodos = (state) =>
-  state.allIds.map(id => state.byId[id]);
-
 export const getVisibleTodos = (state, filter) => {
-  const allTodos = getAllTodos(state);
-
-  switch (filter) {
-    case SHOW_ALL:
-      return allTodos;
-    case SHOW_ACTIVE:
-      return allTodos.filter(t => !t.completed);
-    case SHOW_COMPLETED:
-      return allTodos.filter(t => t.completed);
-    default:
-      return [];
-  }
+  const ids = fromList.getIds(state.listByFilter[filter]);
+  return ids.map(id => fromById.getTodo(state.byId, id));
 };
+
+export const getIsFetching = (state, filter) => (
+  fromList.getIsFetching(state.listByFilter[filter])
+);
+
+export const getErrorMessage = (state, filter) => (
+  fromList.getErrorMessage(state.listByFilter[filter])
+);
